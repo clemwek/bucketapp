@@ -1,4 +1,5 @@
 language: python
+dist: Trusty
 python:
   - "3.6"
 install:
@@ -8,4 +9,4 @@ install:
 script:
 #  coverage run --source=functionalities -m py.test
 after_success:
-#  coveralls
+  coveralls
