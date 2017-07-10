@@ -1,4 +1,6 @@
-# bucketapp
+==========
+ bucketapp
+==========
 
-[![Build Status](https://travis-ci.org/clemwek/bucketapp.svg?branch=master)](https://travis-ci.org/clemwek/bucketapp)
-
+.. image:: https://travis-ci.org/clemwek/bucketapp.svg?branch=master
+    :target: https://travis-ci.org/clemwek/bucketapp
