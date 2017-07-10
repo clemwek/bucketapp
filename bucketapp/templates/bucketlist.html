@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="container">
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <p>{{ message }}</p>
+        </div>
+    {% endfor %}
+    <div class="margin-ten">
+        <div class="row">
+            <div class="header">
+                <h1>Bucketlist</h1>
+                <div class="pull-right">
+                    <a href="/add_bucketlist" class="btn btn-default">Add bucketlist</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% if bucketlists %}
+        {% for bucket in bucketlists %}
+        <div class="col-md-4">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4><b>{{ bucketlists[bucket].name }}</b></h4>
+                                <a class="remove-activity pull-right" href="/rm_bucketlist/{{bucketlists[bucket].name}}">Remove Bucketlist</a>
+                                <a class="add-activity pull-right" href="/edit_bucketlist/{{bucketlists[bucket].name}}">Edit Bucketlist</a>
+                                <a class="add-activity pull-right" href="/add_activity/{{bucketlists[bucket].name}}">Add activity</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        {% if bucketlists[bucket].activities %}
+                            <ul class="list-group">
+                                {% for activity in bucketlists[bucket].activities %}
+                                    <a href="/show_activity/{{ bucketlists[bucket].name }}/{{ bucketlists[bucket].activities[activity].name }}">
+                                        <li class="list-group-item">
+                                            <div class="margin-ten">
+                                                {{ bucketlists[bucket].activities[activity].name }}<br>
+                                                <small>{{ bucketlists[bucket].activities[activity].date }}</small>
+                                                <div class="pull-right">
+                                                    <a href="/edit_activity/{{ bucketlists[bucket].name }}/{{ bucketlists[bucket].activities[activity].name }}" class="btn btn-info">edit</a>
+                                                    <a href="/rm_activity/{{ bucketlists[bucket].name }}/{{ bucketlists[bucket].activities[activity].name }}" class="btn btn-danger">Delete</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </a>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <h4>No activities are added.</h4>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h1>No item added</h1>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

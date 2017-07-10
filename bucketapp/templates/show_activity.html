@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="container">
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Name: {{ activity.name }}</h1>
+                <p>Description: {{ activity.description }}</p>
+                <small>Date: {{ activity.date }}</small>
+            </div>
+            <div class="text-center">
+                <a href="/edit_activity/{{ bucket_id }}/{{ activity.name }}" class="btn btn-info">Edit Activity</a>
+                <a href="/rm_activity/{{ bucket_id }}/{{ activity.name }}" class="btn btn-danger">Delete Activity</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="container">
+    <div class="margin-ten">
+        <div class="row">
+            <h2 class="form-signin-heading">Edit bucketlist: {{bucket_id}}</h2>
+            <div class="pull-right">
+                <a href="/bucketlist" class="btn btn-default">Back</a>
+            </div>
+        </div>
+    </div>
+    <form class="form-signin" action="/edit_bucketlist/{{ bucket_id }}" method="POST">
+        <div class="form-group">
+            <label for="bucketlist" class="sr-only">Bucketlist</label>
+            <input type="text" id="bucketlist" name="bucketlist" class="form-control" value="{{ bucket_id }}" placeholder="Bucketlist" required autofocus>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Add Bucketlist</button>
+    </form>
+</div>
+
+{% endblock %}
