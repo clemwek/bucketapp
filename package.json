@@ -1,0 +1,7 @@
+{
+  "name": "Bucketlist",
+  "description": "A flask project deployed to Heroku.",
+  "image": "heroku/python",
+  "repository": "https://git.heroku.com/lit-lake-37731.git",
+  "keywords": ["python", "Bucketlis", "Flask" ]
+}

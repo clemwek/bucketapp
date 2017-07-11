@@ -1,0 +1,1 @@
+web: gunicorn bucketapp.bucketapp:app --log-file -
