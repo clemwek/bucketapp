@@ -1,7 +1,6 @@
 ==========
  bucketapp
 ==========
-<<<<<<< HEAD
 
 .. image:: https://travis-ci.org/clemwek/bucketapp.svg?branch=master
     :target: https://travis-ci.org/clemwek/bucketapp
@@ -12,4 +11,3 @@ What would you like to do in the next few years? Climb a mountain? Learn to ride
 
 .. image:: https://travis-ci.org/clemwek/bucketapp.svg?branch=master
     :target: https://travis-ci.org/clemwek/bucketapp
->>>>>>> a20bbcc208ae3c792dca9db78dd9e09b5d18efa5
