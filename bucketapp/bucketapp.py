@@ -9,6 +9,7 @@ app.secret_key = 'supersecret'
 
 
 app.users = {}
+app.registered_emails = []
 app.bucketlist = {}
 
 
@@ -23,6 +24,12 @@ def login_required(f):
     return wrap
 
 
+def get_id_for_email(email):
+    for user in app.users:
+        if app.users[user].email == email:
+            return  app.users[user].id
+
+
 @app.route('/')
 def home():
     return render_template('welcome.html')
@@ -34,13 +41,18 @@ def login():
     if request.method == 'POST':
         email = request.form['inputEmail']
         password = request.form['inputPassword']
-        if email not in app.users or password != app.users[email].password:
+        if email not in app.registered_emails:
             error = 'Invalid credentials, please try again.'
         else:
-            session['logged_in'] = True
-            session['email'] = email
-            flash('You are logged in')
-            return redirect(url_for('bucketlist'))
+            user_id = get_id_for_email(email)
+            if app.users[user_id].password != password:
+                error = 'Invalid credentials, please try again.'
+            else:
+                session['logged_in'] = True
+                session['email'] = email
+                session['id'] = user_id
+                flash('You are logged in')
+                return redirect(url_for('bucketlist'))
     return render_template('login.html', error=error)
 
 
@@ -56,6 +68,7 @@ def register():
         if password == passwordAgain:
             new_user = User(name, email, password)
             app.users[new_user.id] = new_user
+            app.registered_emails.append(email)
             session['logged_in'] = True
             session['email'] = email
             session['id'] = new_user.id
