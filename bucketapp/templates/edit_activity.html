@@ -3,10 +3,10 @@
 {% block page_content %}
 
 <div class="container">
-    <form class="form-signin" action="/edit_activity/{{bucket_id}}/{{ activity.name }}" method="POST">
+    <form class="form-signin" action="/edit_activity/{{bucket_id}}/{{ activity.id }}" method="POST">
         <div class="margin-ten">
             <div class="row">
-                <h2 class="form-signin-heading">Edit activity to bucketlist: {{bucket_id}}</h2>
+                <h2 class="form-signin-heading">Edit activity to bucketlist: {{activity.name}}</h2>
                 <div class="pull-right">
                     <a href="/bucketlist" class="btn btn-default">Back</a>
                 </div>
