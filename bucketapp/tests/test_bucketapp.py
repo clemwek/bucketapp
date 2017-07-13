@@ -62,9 +62,9 @@ class TestBucketListApp(unittest.TestCase):
         response = self.logout()
         self.assertIn(b'you are logged out.', response.data)
 
-    def test_correct_login(self):
-        response = self.login('test@test.com', 'test')
-        self.assertIn(b'You are logged in', response.data)
+    # def test_correct_login(self):
+    #     response = self.login('test@test.com', 'test')
+    #     self.assertIn(b'You are logged in', response.data)
 
     def test_incorrect_login(self):
         response = self.login('test@te.com', 'test')
