@@ -31,9 +31,9 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <h4><b>{{ bucketlists[bucket].name }}</b></h4>
-                                <a class="remove-activity pull-right" href="/rm_bucketlist/{{bucketlists[bucket].name}}">Remove Bucketlist</a>
-                                <a class="add-activity pull-right" href="/edit_bucketlist/{{bucketlists[bucket].name}}">Edit Bucketlist</a>
-                                <a class="add-activity pull-right" href="/add_activity/{{bucketlists[bucket].name}}">Add activity</a>
+                                <a class="remove-activity pull-right" href="/rm_bucketlist/{{bucketlists[bucket].id}}">Remove Bucketlist</a>
+                                <a class="add-activity pull-right" href="/edit_bucketlist/{{bucketlists[bucket].id}}">Edit Bucketlist</a>
+                                <a class="add-activity pull-right" href="/add_activity/{{bucketlists[bucket].id}}">Add activity</a>
                             </div>
                         </div>
                     </div>
@@ -42,14 +42,14 @@
                         {% if bucketlists[bucket].activities %}
                             <ul class="list-group">
                                 {% for activity in bucketlists[bucket].activities %}
-                                    <a href="/show_activity/{{ bucketlists[bucket].name }}/{{ bucketlists[bucket].activities[activity].name }}">
+                                    <a href="/show_activity/{{ bucketlists[bucket].id }}/{{ bucketlists[bucket].activities[activity].id }}">
                                         <li class="list-group-item">
                                             <div class="margin-ten">
                                                 {{ bucketlists[bucket].activities[activity].name }}<br>
                                                 <small>{{ bucketlists[bucket].activities[activity].date }}</small>
                                                 <div class="pull-right">
-                                                    <a href="/edit_activity/{{ bucketlists[bucket].name }}/{{ bucketlists[bucket].activities[activity].name }}" class="btn btn-info">edit</a>
-                                                    <a href="/rm_activity/{{ bucketlists[bucket].name }}/{{ bucketlists[bucket].activities[activity].name }}" class="btn btn-danger">Delete</a>
+                                                    <a href="/edit_activity/{{ bucketlists[bucket].id }}/{{ bucketlists[bucket].activities[activity].id }}" class="btn btn-info">edit</a>
+                                                    <a href="/rm_activity/{{ bucketlists[bucket].id }}/{{ bucketlists[bucket].activities[activity].id }}" class="btn btn-danger">Delete</a>
                                                 </div>
                                             </div>
                                         </li>
