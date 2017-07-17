@@ -17,13 +17,13 @@ class TestBucketListApp(unittest.TestCase):
 
     def login(self, email, password):
         with self.client:
-            self.client.post(
-                '/register',
-                data=dict(inputName='test', inputEmail='test@test.com', inputPassword=password, inputPasswordAgain="test"),
-                follow_redirects=True
-            )
-            self.client.get(
-                '/logout', follow_redirects=True)
+            # self.client.post(
+            #     '/register',
+            #     data=dict(inputName='test', inputEmail='test@test.com', inputPassword=password, inputPasswordAgain="test"),
+            #     follow_redirects=True
+            # )
+            # self.client.get(
+            #     '/logout', follow_redirects=True)
             return self.client.post(
                 '/login',
                 data=dict(inputEmail=email, inputPassword=password),
@@ -55,6 +55,8 @@ class TestBucketListApp(unittest.TestCase):
     def test_register(self):
         response = self.register('test', 'test@test.com', 'test')
         self.assertIn(b'You are registered and logged in', response.data)
+        response = self.register('test', 'test@test.com', 'test')
+        self.assertIn(b'Your email has been used.', response.data)
         # self.assertTrue(response.session['email'] == "test@test.com")
         # self.assertTrue(self.client.session['logged_in'])
 
@@ -62,13 +64,27 @@ class TestBucketListApp(unittest.TestCase):
         response = self.logout()
         self.assertIn(b'you are logged out.', response.data)
 
-    # def test_correct_login(self):
-    #     response = self.login('test@test.com', 'test')
-    #     self.assertIn(b'You are logged in', response.data)
+    def test_correct_login(self):
+        self.register('test', 'test2@test.com', 'test')
+        self.logout()
+
+        response = self.login('test2@test.com', 'test')
+        self.assertIn(b'You are logged in', response.data)
 
     def test_incorrect_login(self):
         response = self.login('test@te.com', 'test')
-        self.assertIn(b'Invalid credentials, please try again.', response.data)
+        self.assertIn(b'Invalid email, please try again.', response.data)
+
+    def test_adding_bucketlist(self):
+        self.login('test@test.com', 'test')
+        welcome = self.client.get('/add_bucketlist', content_type='html/text')
+        self.assertEqual(welcome.status_code, 200)
+
+        response = self.client.post('/add_bucketlist', data=dict(bucketlist='test bucketlis'), follow_redirects=True)
+        self.assertIn(b'has been added successful.', response.data)
+
+    # def test_session_created(self):
+    #     self.assertFalse(self.client.session['logged_in'])
 
 
 if __name__ == '__main__':
