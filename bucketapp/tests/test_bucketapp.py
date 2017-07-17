@@ -1,5 +1,5 @@
 import unittest
-from bucketapp.bucketapp import app
+from bucketapp.bucketapp import app, get_id_for_email
 
 
 class TestBucketListApp(unittest.TestCase):
@@ -17,13 +17,6 @@ class TestBucketListApp(unittest.TestCase):
 
     def login(self, email, password):
         with self.client:
-            # self.client.post(
-            #     '/register',
-            #     data=dict(inputName='test', inputEmail='test@test.com', inputPassword=password, inputPasswordAgain="test"),
-            #     follow_redirects=True
-            # )
-            # self.client.get(
-            #     '/logout', follow_redirects=True)
             return self.client.post(
                 '/login',
                 data=dict(inputEmail=email, inputPassword=password),
@@ -57,8 +50,8 @@ class TestBucketListApp(unittest.TestCase):
         self.assertIn(b'You are registered and logged in', response.data)
         response = self.register('test', 'test@test.com', 'test')
         self.assertIn(b'Your email has been used.', response.data)
-        # self.assertTrue(response.session['email'] == "test@test.com")
-        # self.assertTrue(self.client.session['logged_in'])
+        self.assertIn("test@test.com", app.registered_emails)
+        self.assertTrue(get_id_for_email('test@test.com'))
 
     def test_logout(self):
         response = self.logout()
@@ -73,19 +66,7 @@ class TestBucketListApp(unittest.TestCase):
 
     def test_incorrect_login(self):
         response = self.login('test@te.com', 'test')
-        self.assertIn(b'Invalid email, please try again.', response.data)
-
-    def test_adding_bucketlist(self):
-        self.login('test@test.com', 'test')
-        welcome = self.client.get('/add_bucketlist', content_type='html/text')
-        self.assertEqual(welcome.status_code, 200)
-
-        response = self.client.post('/add_bucketlist', data=dict(bucketlist='test bucketlis'), follow_redirects=True)
-        self.assertIn(b'has been added successful.', response.data)
-
-    # def test_session_created(self):
-    #     self.assertFalse(self.client.session['logged_in'])
-
+        self.assertIn(b'You do not have an account, please register.', response.data)
 
 if __name__ == '__main__':
     unittest.main()
