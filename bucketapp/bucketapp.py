@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from functools import wraps
-from bucketapp.models.user.user import User
-from bucketapp.models.bucketlist.bucketlist import Bucketlist
-from bucketapp.models.activity.activity import Activity
+from models.user.user import User
+from models.bucketlist.bucketlist import Bucketlist
+from models.activity.activity import Activity
 
 app = Flask(__name__)
 app.secret_key = 'supersecret'
@@ -42,7 +42,7 @@ def login():
         email = request.form['inputEmail']
         password = request.form['inputPassword']
         if email not in app.registered_emails:
-            error = 'Invalid email, please try again.'
+            error = 'You do not have an account, please register.'
         else:
             user_id = get_id_for_email(email)
             if app.users[user_id].password != password:
