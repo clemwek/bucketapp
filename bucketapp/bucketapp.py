@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from functools import wraps
-from bucketapp.models.user.user import User
-from bucketapp.models.bucketlist.bucketlist import Bucketlist
-from bucketapp.models.activity.activity import Activity
+from models.user.user import User
+from models.bucketlist.bucketlist import Bucketlist
+from models.activity.activity import Activity
 
 app = Flask(__name__)
 app.secret_key = 'supersecret'
@@ -27,7 +27,7 @@ def login_required(f):
 def get_id_for_email(email):
     for user in app.users:
         if app.users[user].email == email:
-            return  app.users[user].id
+            return app.users[user].id
 
 
 @app.route('/')
@@ -42,11 +42,11 @@ def login():
         email = request.form['inputEmail']
         password = request.form['inputPassword']
         if email not in app.registered_emails:
-            error = 'Invalid credentials, please try again.'
+            error = 'Invalid email, please try again.'
         else:
             user_id = get_id_for_email(email)
             if app.users[user_id].password != password:
-                error = 'Invalid credentials, please try again.'
+                error = 'Invalid password, please try again.'
             else:
                 session['logged_in'] = True
                 session['email'] = email
@@ -65,16 +65,20 @@ def register():
         password = request.form['inputPassword'].lower()
         passwordAgain = request.form['inputPasswordAgain'].lower()
 
-        if password == passwordAgain:
-            new_user = User(name, email, password)
-            app.users[new_user.id] = new_user
-            app.registered_emails.append(email)
-            session['logged_in'] = True
-            session['email'] = email
-            session['id'] = new_user.id
-            flash('You are registered and logged in')
-            return redirect(url_for('bucketlist'))
-        error = 'password do not march'
+        if email not in app.registered_emails:
+            if password == passwordAgain:
+                new_user = User(name, email, password)
+                app.users[new_user.id] = new_user
+                app.registered_emails.append(email)
+                session['logged_in'] = True
+                session['email'] = email
+                session['id'] = new_user.id
+                flash('You are registered and logged in')
+                return redirect(url_for('bucketlist'))
+            else:
+                error = 'The password you entered do not match.'
+        else:
+            error = 'Your email has been used.'
 
     return render_template('register.html', error=error)
 
@@ -114,8 +118,9 @@ def add_bucketlist():
 @app.route('/rm_bucketlist/<bucket_id>')
 @login_required
 def rm_bucketlist(bucket_id):
+    bucketlist = app.bucketlist[session['id']][bucket_id].name
     del app.bucketlist[session['id']][bucket_id]
-    flash('Bucket has been removed.')
+    flash(bucketlist + ' has been removed.')
     return redirect(url_for('bucketlist'))
 
 
@@ -158,12 +163,13 @@ def show_activity(bucket_id, activity_id):
 @login_required
 def edit_activity(bucket_id, activity_id):
     activity = app.bucketlist[session['id']][bucket_id].activities[activity_id]
+    old_name = activity.name
     if request.method == 'POST':
         activity.name = request.form['title']
         activity.description = request.form['description']
         activity.date = request.form['date']
 
-        flash('Activity has been edited.')
+        flash('Activity has been edited from ' + old_name + ' to ' + activity.name)
         return redirect(url_for('bucketlist'))
     return render_template('edit_activity.html', activity=activity, bucket_id=bucket_id)
 
@@ -171,8 +177,9 @@ def edit_activity(bucket_id, activity_id):
 @app.route('/rm_activity/<bucket_id>/<activity_id>')
 @login_required
 def rm_activity(bucket_id, activity_id):
+    activity = app.bucketlist[session['id']][bucket_id].activities[activity_id].name
     del app.bucketlist[session['id']][bucket_id].activities[activity_id]
-    flash('Activity has been removed.')
+    flash(activity + ' has been removed.')
     return redirect(url_for('bucketlist'))
 
 if __name__ == '__main__':
