@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>BucketList</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <style>
+            .card {
+                /* Add shadows to create the "card" effect */
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: 0.3s;
+            }
+
+            /* On mouse-over, add a deeper shadow */
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
+            /* Add some padding inside the card container */
+            .card-container {
+                padding: 2px 16px;
+            }
+            .add-activity {
+                border: 2px solid #333;
+                padding: 2.5px;
+            }
+            .add-activity:hover {
+                background: #999;
+            }
+            .add-activity:hover a {
+                font-style: none;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">BucketList</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="create.html">Add item BucketList</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card-container">
+                        <div class="card">
+                            <h4><b>Bucketlist name</b></h4>
+                            <div class="pull-right">
+                                <a class="add-activity" href="add_activity.html">Add activity</a>
+                            </div>
+                            <p>List of activities</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-container">
+                        <div class="card">
+                            <h4><b>Bucketlist name</b></h4>
+                            <div class="pull-right">
+                                <a class="add-activity" href="add_activity.html">Add activity</a>
+                            </div>
+                            <p>List of activities</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-container">
+                        <div class="card">
+                            <h4><b>Bucketlist name</b></h4>
+                            <div class="pull-right">
+                                <a class="add-activity" href="add_activity.html">Add activity</a>
+                            </div>
+                            <p>List of activities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+    </body>
+</html>

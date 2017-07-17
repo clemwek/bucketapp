@@ -1,0 +1,61 @@
+/*
+    Bucketlist Saas Theme
+    Author: __dhwty__
+    Version: 0.0.1
+*/
+
+/* BASE - Base styles Variable, mixins, etc */
+
+body {
+    background: #f5f8fa;
+}
+
+.header {
+    margin: 10px;
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+}
+
+/* Add some padding inside the card container */
+.card-container {
+    padding: 2px 16px;
+}
+
+.card-header {
+    padding: 10px;
+}
+
+.add-activity {
+    border: 2px solid #333;
+    padding: 2.5px;
+    margin: 5px;
+}
+.add-activity:hover {
+    background: #999;
+    text-decoration: none;
+}
+
+.remove-activity {
+    text-decoration: none;
+    border: 2px solid #f00;
+    padding: 2.5px;
+    margin: 5px;
+}
+
+.remove-activity:hover {
+    background: #fe5c5c;
+    text-decoration: none;
+}
+
+.margin-ten {
+    margin: 10px;
+}

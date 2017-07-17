@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>BucketList</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">BucketList</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+
+        <div class="container">
+            <form class="form-signin">
+                <h2 class="form-signin-heading">Add the bucketlist</h2>
+                <div class="form-group">
+                    <label for="bucketlist" class="sr-only">Bucketlist</label>
+                    <input type="text" id="bucketlist" class="form-control" placeholder="Bucketlist" required autofocus>
+                </div>
+                
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Add Bucketlist</button>
+            </form>
+        </div>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+    </body>
+</html>

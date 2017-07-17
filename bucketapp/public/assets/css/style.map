@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "../scss/style.css",
+	"sources": [
+		"../scss/style.scss"
+	],
+	"sourcesContent": [
+		"/*\n    Bucketlist Saas Theme\n    Author: __dhwty__\n    Version: 0.0.1\n*/\n\n/* BASE - Base styles Variable, mixins, etc */\n\nbody {\n    background: #f5f8fa;\n}\n\n.header {\n    margin: 10px;\n}\n\n.card {\n    /* Add shadows to create the \"card\" effect */\n    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);\n    transition: 0.3s;\n}\n\n/* On mouse-over, add a deeper shadow */\n.card:hover {\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);\n}\n\n/* Add some padding inside the card container */\n.card-container {\n    padding: 2px 16px;\n}\n\n.card-header {\n    padding: 10px;\n}\n\n.add-activity {\n    border: 2px solid #333;\n    padding: 2.5px;\n    margin: 5px;\n}\n.add-activity:hover {\n    background: #999;\n    text-decoration: none;\n}\n\n.remove-activity {\n    text-decoration: none;\n    border: 2px solid #f00;\n    padding: 2.5px;\n    margin: 5px;\n}\n\n.remove-activity:hover {\n    background: #fe5c5c;\n    text-decoration: none;\n}\n\n.margin-ten {\n    margin: 10px;\n}"
+	],
+	"mappings": "AAAA;;;;EAIE;AAEF,8CAA8C;;AAE9C,AAAA,IAAI,CAAC;EACD,UAAU,EAAE,OAAQ;CACvB;;;AAED,AAAA,OAAO,CAAC;EACJ,MAAM,EAAE,IAAK;CAChB;;;AAED,AAAA,KAAK,CAAC;EACF,6CAA6C;EAC7C,UAAU,EAAE,CAAC,CAAC,GAAG,CAAC,GAAG,CAAC,CAAC,CAAC,kBAAI;EAC5B,UAAU,EAAE,IAAK;CACpB;;AAED,wCAAwC;;AACxC,AAAK,KAAA,AAAA,MAAM,CAAC;EACR,UAAU,EAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,CAAC,CAAC,kBAAI;CAChC;;AAED,gDAAgD;;AAChD,AAAA,eAAe,CAAC;EACZ,OAAO,EAAE,QAAS;CACrB;;;AAED,AAAA,YAAY,CAAC;EACT,OAAO,EAAE,IAAK;CACjB;;;AAED,AAAA,aAAa,CAAC;EACV,MAAM,EAAE,cAAe;EACvB,OAAO,EAAE,KAAM;EACf,MAAM,EAAE,GAAI;CACf;;;AACD,AAAa,aAAA,AAAA,MAAM,CAAC;EAChB,UAAU,EAAE,IAAK;EACjB,eAAe,EAAE,IAAK;CACzB;;;AAED,AAAA,gBAAgB,CAAC;EACb,eAAe,EAAE,IAAK;EACtB,MAAM,EAAE,cAAe;EACvB,OAAO,EAAE,KAAM;EACf,MAAM,EAAE,GAAI;CACf;;;AAED,AAAgB,gBAAA,AAAA,MAAM,CAAC;EACnB,UAAU,EAAE,OAAQ;EACpB,eAAe,EAAE,IAAK;CACzB;;;AAED,AAAA,WAAW,CAAC;EACR,MAAM,EAAE,IAAK;CAChB",
+	"names": []
+}
