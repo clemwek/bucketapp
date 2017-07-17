@@ -3,6 +3,9 @@
     <head>
         <title>BucketList</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/jquery-ui.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/jquery-ui.structure.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/jquery-ui.theme.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.css') }}">
     </head>
     <body>
@@ -33,6 +36,8 @@
         {% block page_content %}{% endblock %}
 
         <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery-ui.min.js') }}"></script>
         <script src="{{ url_for('static', filename='assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/script.js') }}"></script>
     </body>
 </html>
