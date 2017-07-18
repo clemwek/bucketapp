@@ -1,5 +1,6 @@
 import unittest
-from bucketapp.bucketapp import app, get_id_for_email, add_bucket_list, rm_bucket_list, edit_bucket_list
+from bucketapp.bucketapp import (app, get_id_for_email, add_bucket_list, rm_bucket_list, edit_bucket_list,
+                                _add_activity, _edit_activity, _rm_activity)
 
 
 class TestBucketListApp(unittest.TestCase):
@@ -66,15 +67,27 @@ class TestBucketListApp(unittest.TestCase):
     def test_add_edit_delete_bucket_list(self):
         add_bucket_list('test', 'abdfhs')
         self.assertIn('abdfhs', app.bucketlist)
-        self.assertTrue(len(app.bucketlist['abdfhs']) == 1)
+        self.assertEqual(len(app.bucketlist['abdfhs']), 1)
 
         edit_bucket_list('test edit', 'abdfhs', list(app.bucketlist['abdfhs'].keys())[0])
         self.assertEqual('test edit', app.bucketlist['abdfhs'][list(app.bucketlist['abdfhs'].keys())[0]].name)
 
-        add_bucket_list('test2', 'abdfhs')
-        init_bucket_count = len(app.bucketlist['abdfhs'])
         rm_bucket_list(list(app.bucketlist['abdfhs'].keys())[0], 'abdfhs')
-        self.assertEqual(init_bucket_count - len(app.bucketlist['abdfhs']), 1)
+        self.assertEqual(len(app.bucketlist['abdfhs']), 0)
+
+    def test_add_edit_delete_activity(self):
+        add_bucket_list('test', 'hygzdytfsd')
+        bucket_id = list(app.bucketlist['hygzdytfsd'].keys())[0]
+        self.assertEqual(len(app.bucketlist['hygzdytfsd'][bucket_id].activities), 0)
+        _add_activity('test', 'test description', '2/2/2022', False, 'hygzdytfsd', bucket_id)
+        self.assertEqual(len(app.bucketlist['hygzdytfsd'][bucket_id].activities), 1)
+
+        activity_id = list(app.bucketlist['hygzdytfsd'][bucket_id].activities.keys())[0]
+        _edit_activity('test2', 'test description', '2/2/2022', 'hygzdytfsd', bucket_id, activity_id)
+        self.assertEqual('test2', app.bucketlist['hygzdytfsd'][bucket_id].activities[activity_id].name)
+
+        _rm_activity('hygzdytfsd', bucket_id, activity_id)
+        self.assertEqual(len(app.bucketlist['hygzdytfsd'][bucket_id].activities), 0)
 
 if __name__ == '__main__':
     unittest.main()

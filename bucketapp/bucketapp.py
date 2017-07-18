@@ -61,6 +61,11 @@ def _edit_activity(name, description, date, user_id, bucket_id, activity_id):
     activity.description = description
     activity.date = date
 
+
+def _rm_activity(user_id, bucket_id, activity_id):
+    del app.bucketlist[user_id][bucket_id].activities[activity_id]
+
+
 @app.route('/')
 def home():
     return render_template('welcome.html')
@@ -207,7 +212,7 @@ def edit_activity(bucket_id, activity_id):
 @login_required
 def rm_activity(bucket_id, activity_id):
     activity = app.bucketlist[session['id']][bucket_id].activities[activity_id].name
-    del app.bucketlist[session['id']][bucket_id].activities[activity_id]
+    _rm_activity(session['id'], bucket_id, activity_id)
     flash(activity + ' has been removed.')
     return redirect(url_for('bucketlist'))
 
