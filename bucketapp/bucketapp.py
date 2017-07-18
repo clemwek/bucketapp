@@ -30,6 +30,37 @@ def get_id_for_email(email):
             return app.users[user].id
 
 
+def add_bucket_list(name, user_id):
+    new_bucketlist = Bucketlist(name, user_id)
+    if user_id not in app.bucketlist:
+        app.bucketlist[user_id] = {new_bucketlist.id: new_bucketlist}
+    else:
+        app.bucketlist[user_id][new_bucketlist.id] = new_bucketlist
+    return True
+
+
+def rm_bucket_list(bucket_id, user_id):
+    del app.bucketlist[user_id][bucket_id]
+    return True
+
+
+def edit_bucket_list(name, user_id, bucket_id):
+    app.bucketlist[user_id][bucket_id].name = name
+    return True
+
+
+def _add_activity(name, description, date, status, user_id, bucket_id):
+    new_activity = Activity(name, bucket_id, description, date, status)
+    if name not in app.bucketlist[user_id][bucket_id].activities:
+        app.bucketlist[user_id][bucket_id].activities[new_activity.id] = new_activity
+
+
+def _edit_activity(name, description, date, user_id, bucket_id, activity_id):
+    activity = app.bucketlist[user_id][bucket_id].activities[activity_id]
+    activity.name = name
+    activity.description = description
+    activity.date = date
+
 @app.route('/')
 def home():
     return render_template('welcome.html')
@@ -105,11 +136,7 @@ def add_bucketlist():
     if request.method == 'POST':
         bucketlist = request.form['bucketlist']
         user_id = session['id']
-        new_bucketlist = Bucketlist(bucketlist, user_id)
-        if user_id not in app.bucketlist:
-            app.bucketlist[user_id] = {new_bucketlist.id: new_bucketlist}
-        else:
-            app.bucketlist[user_id][new_bucketlist.id] = new_bucketlist
+        add_bucket_list(bucketlist, user_id)
         flash(bucketlist + ' has been added successful.')
         return redirect(url_for('bucketlist'))
     return render_template('add_bucketlist.html')
@@ -119,7 +146,8 @@ def add_bucketlist():
 @login_required
 def rm_bucketlist(bucket_id):
     bucketlist = app.bucketlist[session['id']][bucket_id].name
-    del app.bucketlist[session['id']][bucket_id]
+    user_id = session['id']
+    rm_bucket_list(bucket_id, user_id)
     flash(bucketlist + ' has been removed.')
     return redirect(url_for('bucketlist'))
 
@@ -130,7 +158,7 @@ def edit_bucketlist(bucket_id):
     bucket_name = app.bucketlist[session['id']][bucket_id].name
     if request.method == 'POST':
         new_name = request.form['bucketlist']
-        app.bucketlist[session['id']][bucket_id].name = new_name
+        edit_bucket_list(new_name, session['id'], bucket_id)
         flash('You have successfully changed ' + bucket_name + ' to ' + new_name)
         return redirect(url_for('bucketlist'))
     return render_template('edit_buckitlist.html', bucket_id=bucket_id, bucket_name=bucket_name)
@@ -144,9 +172,7 @@ def add_activity(bucket_id):
         description = request.form['description']
         date = request.form['date']
         status = False
-        new_activity = Activity(title, bucket_id, description, date, status)
-        if title not in app.bucketlist[session['id']][bucket_id].activities:
-            app.bucketlist[session['id']][bucket_id].activities[new_activity.id] = new_activity
+        _add_activity(title, description, date, status, session['id'], bucket_id)
         flash(title + ' has been added.')
         return redirect(url_for('bucketlist'))
     return render_template('add_activity.html', bucket_id=bucket_id)
@@ -165,11 +191,14 @@ def edit_activity(bucket_id, activity_id):
     activity = app.bucketlist[session['id']][bucket_id].activities[activity_id]
     old_name = activity.name
     if request.method == 'POST':
-        activity.name = request.form['title']
-        activity.description = request.form['description']
-        activity.date = request.form['date']
+        name = request.form['title']
+        description = request.form['description']
+        date = request.form['date']
+        user_id = session['id']
 
-        flash('Activity has been edited from ' + old_name + ' to ' + activity.name)
+        _edit_activity(name, description, date, user_id, bucket_id, activity_id)
+
+        flash('Activity has been edited from ' + old_name + ' to ' + name)
         return redirect(url_for('bucketlist'))
     return render_template('edit_activity.html', activity=activity, bucket_id=bucket_id)
 
