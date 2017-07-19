@@ -31,9 +31,11 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <h4><b>{{ bucketlists[bucket].name }}</b></h4>
-                                <a class="remove-activity pull-right" href="/rm_bucketlist/{{bucketlists[bucket].id}}">Remove Bucketlist</a>
-                                <a class="add-activity pull-right" href="/edit_bucketlist/{{bucketlists[bucket].id}}">Edit Bucketlist</a>
-                                <a class="add-activity pull-right" href="/add_activity/{{bucketlists[bucket].id}}">Add activity</a>
+                                <div class="pull-right">
+                                    <a class="btn btn-default" href="/add_activity/{{bucketlists[bucket].id}}">Add activity</a>
+                                    <a class="btn btn-info" href="/edit_bucketlist/{{bucketlists[bucket].id}}">Edit Bucketlist</a>
+                                    <a class="btn btn-danger" href="/rm_bucketlist/{{bucketlists[bucket].id}}">Remove Bucketlist</a>
+                                </div>
                             </div>
                         </div>
                     </div>
