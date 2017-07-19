@@ -30,11 +30,14 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4><b>{{ bucketlists[bucket].name }}</b></h4>
-                                <div class="pull-right">
-                                    <a class="btn btn-default" href="/add_activity/{{bucketlists[bucket].id}}">Add activity</a>
-                                    <a class="btn btn-info" href="/edit_bucketlist/{{bucketlists[bucket].id}}">Edit Bucketlist</a>
-                                    <a class="btn btn-danger" href="/rm_bucketlist/{{bucketlists[bucket].id}}">Remove Bucketlist</a>
+                                <div class="text-center">
+                                    <h4><b>{{ bucketlists[bucket].name }}</b></h4>
+                                </div>
+                                <hr/>
+                                <div class="pull-right btn-group btn-group-xs" role="group">
+                                    <a type="button" class="btn btn-default" href="/add_activity/{{bucketlists[bucket].id}}">Add activity</a>
+                                    <a type="button" class="btn btn-info" href="/edit_bucketlist/{{bucketlists[bucket].id}}">Edit Bucketlist</a>
+                                    <a type="button" class="btn btn-danger" href="/rm_bucketlist/{{bucketlists[bucket].id}}">Remove Bucketlist</a>
                                 </div>
                             </div>
                         </div>
@@ -50,8 +53,8 @@
                                                 {{ bucketlists[bucket].activities[activity].name }}<br>
                                                 <small>{{ bucketlists[bucket].activities[activity].date }}</small>
                                                 <div class="pull-right">
-                                                    <a href="/edit_activity/{{ bucketlists[bucket].id }}/{{ bucketlists[bucket].activities[activity].id }}" class="btn btn-info">edit</a>
-                                                    <a href="/rm_activity/{{ bucketlists[bucket].id }}/{{ bucketlists[bucket].activities[activity].id }}" class="btn btn-danger">Delete</a>
+                                                    <a href="/edit_activity/{{ bucketlists[bucket].id }}/{{ bucketlists[bucket].activities[activity].id }}" class="btn btn-info btn-xs">edit</a>
+                                                    <a href="/rm_activity/{{ bucketlists[bucket].id }}/{{ bucketlists[bucket].activities[activity].id }}" class="btn btn-danger btn-xs">Delete</a>
                                                 </div>
                                             </div>
                                         </li>
