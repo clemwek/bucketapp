@@ -10,4 +10,6 @@ script:
 #  coverage run --source=functionalities -m py.test
 after_success:
   coveralls
-script: nosetests bucketapp/tests
+script:
+- nosetests bucketapp/tests
+- coverage report
