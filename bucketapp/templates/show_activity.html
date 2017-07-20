@@ -7,9 +7,12 @@
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-12">
-                <h1>Name: {{ activity.name }}</h1>
-                <p>Description: {{ activity.description }}</p>
-                <small>Date: {{ activity.date }}</small>
+                <div class="text-center">
+                    <h1>Name: {{ activity.name }}</h1>
+                    <p>Description: {{ activity.description }}</p>
+                    <small>Date: {{ activity.date }}</small>
+                </div>
+                <hr/>
             </div>
             <div class="text-center">
                 <a href="/edit_activity/{{ bucket_id }}/{{ activity.id }}" class="btn btn-info">Edit Activity</a>
