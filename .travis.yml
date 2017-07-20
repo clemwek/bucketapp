@@ -12,4 +12,3 @@ after_success:
   coveralls
 script:
 - nosetests bucketapp/tests
-- coverage report
