@@ -11,5 +11,4 @@ script:
 after_success:
   coveralls
 script:
-- nosetests bucketapp/tests
-- coverage run --source=bucketapp bucketapp/bucketapp.py bucketapp/tests
+- nosetests  --with-coverage --cover-package=bucketapp
