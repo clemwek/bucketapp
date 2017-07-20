@@ -1,13 +1,1 @@
-language: python
-python:
-  - "3.6"
-install:
-  - pip install -e . --use-mirrors
-before_script:
-  - pip install -r test_requirements.txt --use-mirrors
-  - git clone https://github.com/clemwek/bucketapp.git
-  - cd bucketapp
-script:
-  - nosetests bucketlistapp/tests --doctest-modules --pep8 coveralls -v --cov coveralls --cov-report term-missing
-after_success:
-  - coveralls
+!coverage.py: This is a private format, don't read it directly!{"lines": {"/home/clement/probox/projects/python/learning/bucketapp/bucketapp/bucketapp.py": [1, 2, 3], "/home/clement/probox/projects/python/learning/bucketapp/bucketapp/__init__.py": [], "/home/clement/probox/projects/python/learning/bucketapp/bucketapp/models/__init__.py": [], "/home/clement/probox/projects/python/learning/bucketapp/bucketapp/models/activity/__init__.py": [], "/home/clement/probox/projects/python/learning/bucketapp/bucketapp/models/activity/activity.py": [], "/home/clement/probox/projects/python/learning/bucketapp/bucketapp/models/user/user.py": [], "/home/clement/probox/projects/python/learning/bucketapp/bucketapp/models/user/__init__.py": [], "/home/clement/probox/projects/python/learning/bucketapp/bucketapp/models/bucketlist/__init__.py": [], "/home/clement/probox/projects/python/learning/bucketapp/bucketapp/models/bucketlist/bucketlist.py": [], "/home/clement/probox/projects/python/learning/bucketapp/bucketapp/tests/test_bucketapp.py": [], "/home/clement/probox/projects/python/learning/bucketapp/bucketapp/tests/test_bucketlist.py": [], "/home/clement/probox/projects/python/learning/bucketapp/bucketapp/tests/test_user.py": [], "/home/clement/probox/projects/python/learning/bucketapp/bucketapp/tests/__init__.py": [], "/home/clement/probox/projects/python/learning/bucketapp/bucketapp/tests/test_activity.py": []}}
