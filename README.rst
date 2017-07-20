@@ -53,5 +53,10 @@ Testing
 
 To test the app run the following command
     ``nosetests bucketlistapp/tests``
+
+To view the test coverage
+    ``nosetests  --with-coverage --cover-package=bucketapp``
+
+
     
     
