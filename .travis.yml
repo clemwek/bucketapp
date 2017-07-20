@@ -11,4 +11,4 @@ script:
 after_success:
   coveralls
 script:
-- nosetests bucketapp/tests
+- coverage run --source=bucketlist/tests
