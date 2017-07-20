@@ -5,6 +5,10 @@
 .. image:: https://travis-ci.org/clemwek/bucketapp.svg?branch=master
     :target: https://travis-ci.org/clemwek/bucketapp
 
+.. image:: https://coveralls.io/repos/github/clemwek/bucketapp/badge.svg?branch=master
+    :target: https://coveralls.io/github/clemwek/bucketapp?branch=master
+
+
 
 What would you like to do in the next few years? Climb a mountain? Learn to ride a bike? :) It’s important to  keep track of what you have already done and what you are yet to achieve. Register and start tracking.
 
