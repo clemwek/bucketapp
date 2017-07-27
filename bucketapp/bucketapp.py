@@ -219,7 +219,3 @@ def rm_activity(bucket_id, activity_id):
     _rm_activity(session['id'], bucket_id, activity_id)
     flash(activity + ' has been removed.')
     return redirect(url_for('bucketlist'))
-
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run('',port = port)
