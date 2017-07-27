@@ -1,1 +1,1 @@
-web: python bucketapp/bucketapp.py
+web: python run.py
