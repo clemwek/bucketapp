@@ -1,9 +1,9 @@
-import os
+
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from functools import wraps
-from models.user.user import User
-from models.bucketlist.bucketlist import Bucketlist
-from models.activity.activity import Activity
+from bucketapp.models.user.user import User
+from bucketapp.models.bucketlist.bucketlist import Bucketlist
+from bucketapp.models.activity.activity import Activity
 
 
 
