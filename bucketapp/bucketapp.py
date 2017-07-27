@@ -1,8 +1,11 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from functools import wraps
 from bucketapp.models.user.user import User
 from bucketapp.models.bucketlist.bucketlist import Bucketlist
 from bucketapp.models.activity.activity import Activity
+
+
 
 app = Flask(__name__)
 app.secret_key = 'supersecret'
@@ -132,6 +135,7 @@ def logout():
 @login_required
 def bucketlist():
     bucketlists = None if session['id'] not in app.bucketlist else app.bucketlist[session['id']]
+    print(bucketlists)
     return render_template('bucketlist.html', bucketlists=bucketlists)
 
 
@@ -217,4 +221,5 @@ def rm_activity(bucket_id, activity_id):
     return redirect(url_for('bucketlist'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run('',port = port)

@@ -1,1 +1,1 @@
-web: gunicorn bucketapp.bucketapp:app --log-file -
+web: python bucketapp/bucketapp.py
