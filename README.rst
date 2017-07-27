@@ -41,7 +41,7 @@ Install the application's dependencies from requirements.txt to the virtual envi
     
 
 Run the app on port 5000
-    ``python bucketlistapp/bucketlistapp.py``
+    ``python run.py``
     
 Access the page in the browser 
     ``localhost:5000``
